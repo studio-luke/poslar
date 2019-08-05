@@ -1,3 +1,5 @@
+#-*-coding:utf-8 -*-
+
 # connect to server
 # 2018.10.03
 # BCODE

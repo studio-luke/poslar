@@ -1,3 +1,5 @@
+#-*-coding:utf-8 -*-
+
 # objectification
 # 2018.10.12
 # BCODE

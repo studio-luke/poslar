@@ -7,8 +7,8 @@ import mic
 import time
 
 def run():
-    HOST = '192.168.0.96'
-    PORT = 5034
+    HOST = '1411.223.163.207'
+    PORT = 5558
     #socket create for camera
     server_socket = server_connect.Connect(HOST, PORT)
     time.sleep(1)
