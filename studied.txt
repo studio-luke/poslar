@@ -1,0 +1,11 @@
+Studied
+
+
+
+
+Studying
+computer/model.py (JW)
+computer/rc_driver_main.py(SY)
+computer/server_video(SY)
+raspberrypi/rasp_serial(SI)
+raspberrypi/ultrasonic(SH)
