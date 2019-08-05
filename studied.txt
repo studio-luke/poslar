@@ -1,12 +1,18 @@
 Studied
-raspberrypi/ultrasonic(SH)
-raspberrypi/server_connect(SH)
+raspberrypi/ultrasonic(SH->SY)		Modified
+raspberrypi/server_connect(SH->SY)	Modified
 raspberrypi/Camera(JW,JH)
 
 
 
 Studying
 computer/model.py (JW)
-computer/rc_driver_main.py(SY)
-computer/server_video(SY)
+computer/rc_driver_main.py(SY)		
+computer/server_video(SY)		
 raspberrypi/rasp_serial(SI)		Modified
+
+
+
+etc
+raspberrypi/main.py(SY)_host, port, 주석처리 	Modified
+computer/collect_training_data.py(SI)_host, port	Modified
