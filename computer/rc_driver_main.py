@@ -1,6 +1,3 @@
-# 주석을 추가했습니다.
-
-
 import server_video
 import server_ultra
 import server_microphone
@@ -11,9 +8,9 @@ import threading
 
 if __name__ == '__main__':
     # host, port
-    host, port = "192.168.0.96", 5034  # 호스트 주소와 포트번호를 저장합니다.
+    host, port = "192.168.0.96", 5034
 
-    client = server_socket.Server(host, port)  
+    client = server_socket.Server(host, port)
 
     steer = server_steer.Steer(client.Get_Client()) 
 
