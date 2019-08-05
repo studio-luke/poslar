@@ -1,5 +1,7 @@
 Studied
-
+raspberrypi/ultrasonic(SH)
+raspberrypi/server_connect(SH)
+raspberrypi/Camera(JW,JH)
 
 
 
@@ -7,5 +9,4 @@ Studying
 computer/model.py (JW)
 computer/rc_driver_main.py(SY)
 computer/server_video(SY)
-raspberrypi/rasp_serial(SI)
-raspberrypi/ultrasonic(SH)
+raspberrypi/rasp_serial(SI)		Modified
