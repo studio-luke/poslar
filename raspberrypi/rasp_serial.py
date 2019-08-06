@@ -1,13 +1,16 @@
-import wiringpi
+# Some code has modified.
+
+import wiringpi  # python 표준 모듈. 라즈베리파이의 GPIO 핀을 제어하는 기능 제공
 import playmusic
 
 class Serial(object):
+    #TODO: CODE MODIFIED, default_speed -> Class Attribute
+    default_speed = 120
+
     def __init__(self):
 
         self.music = playmusic.MUSIC()
-
         # default speed
-        self.default_speed = 120
         self.speed = self.default_speed
 
         # motor
@@ -37,25 +40,38 @@ class Serial(object):
         self.IN1 = 30
         self.IN2 = 21
         self.IN3 = 22
-        self.IN4 = 23    
+        self.IN4 = 23
 
-        wiringpi.wiringPiSetup()
+        wiringpi.wiringPiSetup()                            # 초기화(Initialize)
 
-        self.setPinConfig(self.ENA, self.IN1, self.IN2)
+        self.setPinConfig(self.ENA, self.IN1, self.IN2)     # 51번줄 정의 참고)
         self.setPinConfig(self.ENB, self.IN3, self.IN4)
-    
+
     #PIN setting function
+    #   Description: Input GPIO들을 OUTPUT으로 매핑 및 Software PWM을 생성?하는 함수
+    #   input:
+    #       EN: PWM 단자(모터)
+    #       INA, INB: 2개의 GPIO 단자들
+    #   output: None
     def setPinConfig(self, EN, INA, INB):
-        wiringpi.pinMode(EN, self.OUTPUT)
+        wiringpi.pinMode(EN, self.OUTPUT)   # 핀들을 OUTPUT으로 매핑
         wiringpi.pinMode(INA, self.OUTPUT)
         wiringpi.pinMode(INB, self.OUTPUT)
-        wiringpi.softPwmCreate(EN, 0, 255)
+        wiringpi.softPwmCreate(EN, 0, 255)  # EN 핀이 0~255 사이의 하나의 값을 가지도록
 
     #motor control function
+    #   Description: 모터의 속도를 조절해주는 함수
+    #   input:
+    #       PWM: PWM 단자(=EN)
+    #       INA, INB: 2개의 GPIO 단자들
+    #       speed: 모터의 속도 값
+    #   output: None
     def setMotorControl(self, PWM, INA, INB, speed, stat):
         #motor speed control PWM
-        wiringpi.softPwmWrite(PWM, speed)
-        
+        wiringpi.softPwmWrite(PWM, speed)   # PWM(모터) 값을 speed 값으로 조정
+
+        #TODO: INA, INB값이 HIGH, LOW로 계속 바뀌는데 정확히 어떤 의미인지?
+
         #FORWARD
         if stat == self.FORWARD:
             wiringpi.digitalWrite(INA, self.HIGH)
@@ -74,10 +90,13 @@ class Serial(object):
         elif stat == self.DIR:
             wiringpi.digitalWrite(INA, self.HIGH)
             wiringpi.digitalWrite(INB, self.HIGH)
-        
+
     #motor control function_warp
     #ch1 == front
     #ch2 == back
+
+    #TODO: 채널은 무슨 의미인지?
+
     def setMotor(self, ch, speed, stat):
         if ch == self.CH1:
             self.setMotorControl(self.ENA, self.IN1, self.IN2, speed, stat)
@@ -89,7 +108,7 @@ class Serial(object):
         if data == '60' :
             print('limit 60')
             self.speed = 180
-            self.music.play_music('./sounds/limit60.mp3')                
+            self.music.play_music('./sounds/limit60.mp3')
         elif data == '30' :
             self.speed = self.default_speed
             self.music.play_music('./sounds/limit30.mp3')
