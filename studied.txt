@@ -10,8 +10,7 @@ computer/model.py (JW)
 computer/rc_driver_main.py(SY)		
 computer/server_video(SY)		
 raspberrypi/rasp_serial(SI)		Modified
-
-
+computer/server_steer(SH)
 
 etc
 raspberrypi/main.py(SY)_host, port, 주석처리 	Modified
