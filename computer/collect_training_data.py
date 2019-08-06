@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 import cv2
 # import serial
@@ -9,7 +8,7 @@ import time
 import os
 
 class CollectTrainingData(object):
-    
+
     def __init__(self, host, port, input_size):
 
         #self.server_socket = socket.socket()
@@ -43,28 +42,25 @@ class CollectTrainingData(object):
         print("Start collecting images...")
         print("Press 'q' or 'x' to finish...")
         start = cv2.getTickCount()
-	print("gogo")
+
         X = np.empty((0, self.input_size))
         y = np.empty((0, 4))
-	
+
         # stream video frames one by one
         try:
             stream_bytes = b' '
             frame = 1
             cnt = 0
             while self.send_inst:
-                print("Oh you come here")
-		#stream_bytes += self.connection.read(1024)
+                #stream_bytes += self.connection.read(1024)
                 stream_bytes += self.connection.recv(1024)
                 first = stream_bytes.find(b'\xff\xd8')
                 last = stream_bytes.find(b'\xff\xd9')
-		print("Well done ^^")
                 if first != -1 and last != -1:
                     jpg = stream_bytes[first:last + 2]
                     stream_bytes = stream_bytes[last + 2:]
 
                     image = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_GRAYSCALE)
-                    print("HIIIIIIIIIIIIII????????????????")
 
                     # select lower half of the image
                     height, width = image.shape
@@ -76,7 +72,7 @@ class CollectTrainingData(object):
 
                     # reshape the roi image into a vector
                     temp_array = roi.reshape(1, int(height/2) * width).astype(np.float32)
-                    
+
 
                     frame += 1
                     total_frame += 1
