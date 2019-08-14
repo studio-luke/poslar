@@ -1,3 +1,4 @@
+#-*-coding:utf-8 -*-
 import numpy as np
 import cv2
 # import serial
@@ -43,6 +44,9 @@ class CollectTrainingData(object):
         print("Press 'q' or 'x' to finish...")
         start = cv2.getTickCount()
 
+        # //////////////////////////////////////////////////// #
+        # //////////////////////////////////////////////////// #
+
         X = np.empty((0, self.input_size))
         y = np.empty((0, 4))
 
@@ -79,10 +83,14 @@ class CollectTrainingData(object):
 
                     # get input from human driver
                     for event in pygame.event.get():
+
                         if event.type == KEYDOWN:
                             key_input = pygame.key.get_pressed()
 
-                            #complex orders
+                            # complex orders
+                            # 서버 컴퓨터에서 에서 화살표 키 입력 시 그에 해당하는 알파벳 문자?를
+                            # 인코드 해서 라즈베리 파이에 보냄!
+                            # 그럼 라즈베리 파이가 그걸 인식하고 모터를 돌리겠지??
                             if key_input[pygame.K_UP] and key_input[pygame.K_RIGHT]:
                                print("Forward Right")
                                X = np.vstack((X, temp_array))
@@ -184,7 +192,7 @@ class CollectTrainingData(object):
 if __name__ == '__main__':
     # host, port
 
-    h, p = "141.223.163.207", 5558
+    h, p = "141.223.163.207", 5557
 
     # serial port
     #sp = "/dev/tty.usbmodem1421"
