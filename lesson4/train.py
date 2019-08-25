@@ -45,13 +45,13 @@ tf.summary.scalar("loss_val", loss_val)
 merged_summary_op = tf.summary.merge_all()
 
 saver = tf.train.Saver(write_version = tf.train.SaverDef.V2)
-saver.restore(sess, "save/model.ckpt")
+# saver.restore(sess, "save/model.ckpt")
 
 # op to write logs to Tensorboard
 logs_path = './logs'
 summary_writer = tf.summary.FileWriter(logs_path, graph=tf.get_default_graph())
 
-epochs = 5   ###8  ###12  ###20  
+epochs = 12  ###8  ###12  ###20  
 batch_size = 100
 
 # train over the dataset about 30 times
